@@ -19,10 +19,9 @@ For this project's final part, we are acting as a Data Analyst working at a Real
 - [Tools](#tools)
 - [Deliverables](#deliverables)
 - [Stretch Goals](#stretch-goals)
-- [Knowledge Acquired](#knowledge-acquired)
+- [Process](#process)
   - [Part 1](#part-1---insurance-cost-analysis)
   - [Final Assignment](#final-assignment)
-- [Process](#process)
 
 ## Tools
 
@@ -42,28 +41,14 @@ For this project's final part, we are acting as a Data Analyst working at a Real
 
 - [x] None so far
 
-## Knowledge Acquired
+## Process
 
 ### Part 1 - Insurance Cost Analysis
 
-- Load the data as a pandas DataFrame
-- Clean the data, taking care of the blank entries
-- Run exploratory data analysis and identify the attributes that most affect the charges
-- Develop single variable and multivariable Linear Regression models for predicting the charges
-- Use Ridge regression to refine the performance of Linear regression models.
+1. Load the data as a pandas DataFrame
+2. Clean the data, taking care of the blank entries
+3. Run exploratory data analysis and identify the attributes that most affect the charges
+4. Develop single variable and multivariable Linear Regression models for predicting the charges
+5. Use Ridge regression to refine the performance of Linear regression models.
 
 ### Final Assignment - House Sales in King Count USA
-
-## Process
-
-1. Data Cleaning
-
-- Using Pandas to perform operations to get clean data, such as dropna() and replace(). The clean datasets are paramount to a good analysis.
-
-2. Select relevant data
-
-- Select the columns and rows that are most relevant for us.
-
-3. Plot the data
-
-- Use Matplotlib to graph the relevant data. The visualization makes finding insights easier.
