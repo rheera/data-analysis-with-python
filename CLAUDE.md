@@ -9,7 +9,15 @@ Final project for Course 7 of IBM's Data Analyst Professional Certificate (Cours
 
 - Cloud sessions run on the `data-analysis-with-python` environment. Its setup script installs pandas, numpy, matplotlib, seaborn, scikit-learn, nbconvert and ipykernel into the system `python3`, so no virtualenv is needed.
 - The container runs Python 3.13; the README lists 3.12.2. Both notebooks run cleanly on 3.13.
-- Network access is limited to package registries plus `cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud`. Ask before adding hosts.
+- Network access is limited to package registries, `cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud`, and `api.minimax.io` (opened by its saved key, see below). Ask before adding hosts.
+
+## MiniMax API
+
+- A MiniMax API key for `api.minimax.io` is saved as a network secret on the cloud environment. The network proxy adds `Authorization: Bearer <key>` to every request to that host.
+- No environment variable holds the key. Never ask for it in chat or write it to a file. In code, read it with a placeholder fallback so the same code works locally and in the cloud (the proxy overwrites the header):
+  `os.environ.get("MINIMAX_API_KEY", "proxy-injected")`
+- Use the international host: `https://api.minimax.io/v1` (OpenAI-compatible, e.g. `/v1/chat/completions`, `/v1/models`), not `api.minimaxi.com`.
+- An HTTP 402 `insufficient_balance_error` means the MiniMax account needs credit, not that the key is wrong.
 
 ## Data
 
