@@ -7,6 +7,7 @@ One file per agent that works on this repo: what it is, where it's defined, and 
 | `main.yaml` | Claude, the main agent in cloud sessions |
 | `minimax.yaml` | MiniMax, called from Python over its API |
 | `subagents/*.yaml` | Each subagent Claude can start |
+| `minimax_tests/` | Scripts that check the MiniMax settings, with results in `RESULTS.md` |
 
 - **The Claude cards are descriptive.** Claude Code doesn't read this folder; the live settings come from the session itself, `CLAUDE.md` and `.claude/` (if added). To make a subagent card live, rewrite it as a Markdown file under `.claude/agents/`.
 - **The MiniMax card is real config.** Load it with `yaml.safe_load()` and send `system_prompt` as the first message.
