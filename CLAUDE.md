@@ -18,7 +18,7 @@ Final project for Course 7 of IBM's Data Analyst Professional Certificate (Cours
   `os.environ.get("MINIMAX_API_KEY", "proxy-injected")`
 - Use the international host: `https://api.minimax.io/v1` (OpenAI-compatible, e.g. `/v1/chat/completions`, `/v1/models`), not `api.minimaxi.com`.
 - An HTTP 402 `insufficient_balance_error` means the MiniMax account needs credit, not that the key is wrong.
-- The model, `max_tokens` and system prompt to use live in `agents/minimax.yaml` (load it with `yaml.safe_load()`). `agents/` also holds a descriptive ID card for the main agent and each subagent.
+- The model, `max_tokens`, sampling settings and system prompt to use live in `agents/minimax.yaml` (load it with `yaml.safe_load()`). `agents/` also holds a descriptive ID card for the main agent and each subagent.
 
 ## Data
 

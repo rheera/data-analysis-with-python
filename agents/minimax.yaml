@@ -1,5 +1,6 @@
 # Agent ID card for MiniMax. Unlike the Claude cards, this file is usable config:
-# load it with yaml.safe_load() and send system_prompt as the first message.
+# load it with yaml.safe_load(), send system_prompt as the first message and add
+# the sampling settings to each request.
 name: MiniMax
 role: External model called from Python code in this repo
 kind: plain model API, with no agent program around it
@@ -18,16 +19,20 @@ auth:
 
 model: MiniMax-M3.1-Flash
 other_models_available:
-  - MiniMax-M3
-  - MiniMax-M2.7
-  - MiniMax-M2.7-highspeed
-  - MiniMax-M2.5
-  - MiniMax-M2.5-highspeed
-  - MiniMax-M2.1
-  - MiniMax-M2.1-highspeed
-  - MiniMax-M2
+  - MiniMax-M3  # the M2.x models that /v1/models still lists return 404 "no longer available"
 max_tokens: 2000  # hidden reasoning counts against this; too low gives an empty reply (finish_reason "length")
 timeout_seconds: 120
+
+# Sampling settings, sent as extra request fields (**sampling). Tested on 2026-11-05:
+# - The API silently ignores unknown parameters, so "accepted" does not mean "applied".
+# - MiniMax-M3.1-Flash: temperature, top_p and seed made no visible difference to answers.
+# - MiniMax-M3: a low temperature reduced variety (3 of 4 answers the same at 0.01).
+sampling:
+  temperature: 1.0  # accepted from 0 to 2.5 without error
+  top_p: 0.95       # must be in (0, 1]; values above 1 are rejected with HTTP 400
+not_supported:
+  n: values above 1 are rejected with HTTP 400
+  stop: accepted but ignored
 
 reads_claude_md: false
 sees: only the messages in each request
