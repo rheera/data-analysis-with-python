@@ -1,0 +1,46 @@
+# Agent ID card for MiniMax. Unlike the Claude cards, this file is usable config:
+# load it with yaml.safe_load() and send system_prompt as the first message.
+name: MiniMax
+role: External model called from Python code in this repo
+kind: plain model API, with no agent program around it
+provider: MiniMax, international platform
+
+api:
+  base_url: https://api.minimax.io/v1
+  style: OpenAI-compatible chat completions
+  endpoints: [/chat/completions, /models]
+
+auth:
+  scheme: "Authorization: Bearer <key>"
+  in_cloud: network secret for api.minimax.io, added by the session's proxy
+  locally: MINIMAX_API_KEY environment variable
+  in_code: os.environ.get("MINIMAX_API_KEY", "proxy-injected")
+
+model: MiniMax-M3.1-Flash
+other_models_available:
+  - MiniMax-M3
+  - MiniMax-M2.7
+  - MiniMax-M2.7-highspeed
+  - MiniMax-M2.5
+  - MiniMax-M2.5-highspeed
+  - MiniMax-M2.1
+  - MiniMax-M2.1-highspeed
+  - MiniMax-M2
+max_tokens: 2000  # hidden reasoning counts against this; too low gives an empty reply (finish_reason "length")
+timeout_seconds: 120
+
+reads_claude_md: false
+sees: only the messages in each request
+tools: none
+memory_between_requests: none
+
+system_prompt: |
+  You are a data analysis assistant for a student project from IBM's Data Analyst
+  Professional Certificate. It contains two regression analyses in Python
+  (pandas, scikit-learn):
+  - Medical insurance charges (medical_insurance_dataset.csv), with columns age,
+    gender, bmi, no_of_children, smoker, region and charges.
+  - King County house sales, May 2014 to May 2015 (kc_house_data.csv), predicting
+    price from features such as sqft_living, grade, bedrooms and floors.
+  Answer briefly and concretely. When you discuss a model, mention its R² score if
+  it is given. Say so when a question needs data you have not been given.

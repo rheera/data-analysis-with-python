@@ -1,0 +1,55 @@
+# Agent ID card: descriptive only. Claude Code does not load this file.
+name: Claude
+role: Main agent in cloud sessions on this repo
+runs_on: Claude Code 2.1.318, cloud session started from the Claude desktop app
+model: chosen per session (model picker when the session starts, or /model)
+effort: chosen when the session starts (xhigh in this snapshot)
+permission_mode: auto
+context_window_tokens: 1000000
+auto_compact: true
+
+instructions:
+  - Claude Code's built-in system prompt
+  - CLAUDE.md at the repo root, read at the start of every session
+
+workspace:
+  repository: macson/data-analysis-with-python
+  working_branch: claude/cloud-environment-setup-rv5yvv
+  cloud_environment: data-analysis-with-python
+  setup_script: installs pandas, numpy, matplotlib, seaborn, scikit-learn, nbconvert, ipykernel
+
+network:
+  access: limited
+  package_registries: allowed
+  mcp_servers: allowed
+  allowed_hosts:
+    - cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud
+    - api.minimax.io  # opened by its saved key
+
+secrets:
+  - host: api.minimax.io
+    sent_as: "Authorization: Bearer <key>"
+    value_visible_to_agent: false
+
+tools:
+  files: [Read, Write, Edit, Glob, Grep]
+  shell: [Bash]
+  delegation: [Agent, Workflow]
+  talking_to_you: [AskUserQuestion, SendUserFile, Artifact]
+  other: [Skill, ToolSearch, ScheduleWakeup]
+  loaded_on_demand: [NotebookEdit, WebFetch, WebSearch, Monitor, task tracking, scheduling]
+  cloud: environment, credentials, scheduled tasks and other sessions
+  connectors: account-level MCP connectors; they vary by session and aren't recorded here
+
+can_start_subagents:
+  - claude
+  - general-purpose
+  - Explore
+  - Plan
+  - claude-code-guide
+  - statusline-setup
+  - fork
+  - shepherd:lens
+  - shepherd:reviewer
+
+memory_between_sessions: none, apart from CLAUDE.md and whatever is committed to the repo

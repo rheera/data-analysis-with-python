@@ -1,0 +1,13 @@
+# Agent ID card: descriptive only. Claude Code does not load this file.
+name: claude
+kind: subagent
+defined_in: provided by Claude Code for this session (no file on disk)
+purpose: Catch-all for tasks that don't fit a more specific agent; the default when no agent type is named
+tools: all
+can_edit_files: true
+can_start_agents: not stated (it has all tools)
+model: from its definition (not visible); otherwise inherits the main session's model
+effort: from its definition (not visible)
+starts_with: only the prompt the main agent writes, no conversation history
+runs_in: the main session's container (same files and network)
+reports_to: the main agent; you see its result only through the main agent

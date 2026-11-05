@@ -1,0 +1,13 @@
+# Agent ID card: descriptive only. Claude Code does not load this file.
+name: fork
+kind: copy of the main agent
+defined_in: built into Claude Code (subagent_type "fork")
+purpose: Runs a side task with the main agent's full conversation, keeping its tool output out of the main thread
+tools: same as the main agent
+can_edit_files: true
+can_start_agents: false  # a fork does the work itself instead of delegating again
+model: always the main session's model (a model override is ignored)
+effort: same as the main session
+starts_with: the full conversation so far
+runs_in: the main session's container (same files and network)
+reports_to: the main agent; you see its result only through the main agent

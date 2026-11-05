@@ -1,0 +1,14 @@
+# Agent ID card: descriptive only. Claude Code does not load this file.
+name: shepherd:reviewer
+kind: plugin subagent
+defined_in: shepherd plugin v1.15.0 (agents/reviewer.md), synced from your claude.ai plugins at the start of each session
+purpose: Runs shepherd's review lenses on a pull request or branch and returns the findings with confidence scores
+tools: [Agent, Bash, Read, Grep, Glob]
+can_edit_files: false  # read-only by instruction
+can_start_agents: true  # starts one shepherd:lens per lens
+model: set in the plugin's agent file
+effort: not set in its file (uses the default)
+started_by: shepherd's review mode
+starts_with: a PR number, or a branch and its base
+runs_in: the main session's container (same files and network)
+reports_to: the main agent, which merges the findings

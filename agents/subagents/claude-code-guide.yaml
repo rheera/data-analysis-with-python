@@ -1,0 +1,14 @@
+# Agent ID card: descriptive only. Claude Code does not load this file.
+name: claude-code-guide
+kind: subagent
+defined_in: built into Claude Code (no file on disk)
+purpose: Answers questions about Claude Code, the Claude Agent SDK, the Claude API, Claude Tag (Claude in Slack) and plugin evals
+tools: [Glob, Grep, Read, WebFetch, WebSearch]
+can_edit_files: false
+can_start_agents: false
+model: from its definition (not visible); otherwise inherits the main session's model
+effort: from its definition (not visible)
+starts_with: only the prompt the main agent writes, no conversation history
+runs_in: the main session's container (same files and network)
+reports_to: the main agent; you see its result only through the main agent
+note: the main agent continues a running one with SendMessage rather than starting a new one

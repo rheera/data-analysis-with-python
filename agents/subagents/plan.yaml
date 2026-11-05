@@ -1,0 +1,15 @@
+# Agent ID card: descriptive only. Claude Code does not load this file.
+name: Plan
+kind: subagent
+defined_in: built into Claude Code (no file on disk)
+purpose: Software architect; designs step-by-step implementation plans and names the critical files and trade-offs
+tools:
+  allowed: all
+  except: [Agent, Artifact, ArtifactComments, ArtifactData, ArtifactCheck, ExitPlanMode, Edit, Write, NotebookEdit]
+can_edit_files: false  # plans only, though Bash is available
+can_start_agents: false
+model: from its definition (not visible); otherwise inherits the main session's model
+effort: from its definition (not visible)
+starts_with: only the prompt the main agent writes, no conversation history
+runs_in: the main session's container (same files and network)
+reports_to: the main agent; you see its result only through the main agent
